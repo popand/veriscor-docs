@@ -207,8 +207,6 @@ Overage checks are billed at your plan's overage rate. You can set a monthly har
 
 ## Releases
 
-See the [GitHub Releases](https://github.com/popand/veriscor/releases) page for version history.
-
 ### v0.1.0 — MVP Launch (2026-03-27)
 
 - **Verification API** — `POST /api/v1/verify` (single) and `POST /api/v1/verify/batch` (up to 50 documents with webhook delivery)
