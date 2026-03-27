@@ -205,6 +205,69 @@ Yes. The documentation includes a dedicated [I-9 integration guide](https://veri
 **What happens if I exceed my plan's check limit?**
 Overage checks are billed at your plan's overage rate. You can set a monthly hard cap in the dashboard — once reached, the API returns a 429 status code instead of processing.
 
+## Releases
+
+See the [GitHub Releases](https://github.com/popand/veriscor/releases) page for version history.
+
+### v0.1.0 — MVP Launch (2026-03-27)
+
+- **Verification API** — `POST /api/v1/verify` (single) and `POST /api/v1/verify/batch` (up to 50 documents with webhook delivery)
+- **AI-powered scoring** — Claude Vision analyzes metadata, compression artifacts, font consistency, and pixel-level anomalies
+- **Metered billing** — Stripe integration with free tier (100 checks/month), pay-as-you-go at $0.05/check
+- **Dashboard** — API key management, audit log, billing, and interactive playground
+- **Documentation site** — Quickstart, API reference, authentication, webhooks, errors, rate limits, I-9 guide
+- **Security** — SHA-256 key hashing, RLS on all tables, HMAC-SHA256 webhook signatures, security headers, Vercel WAF rules
+- **Quality** — 119 tests (96% coverage), Lighthouse SEO 100, zero type casts, Zod validation on all inputs
+
+## Changelog
+
+### 2026-03-27
+
+**Added:**
+- Test suite: 119 tests across 14 files (96% statement coverage)
+- Coverage thresholds enforced (80% statements/lines/functions, 75% branches)
+
+**Changed:**
+- Logger uses `console.info` for info-level output (semantic correctness)
+
+**Removed:**
+- Unused Supabase middleware helper (dead code superseded by `proxy.ts`)
+
+### 2026-03-26
+
+**Fixed:**
+- OG image route 500 in production
+- Pricing CTA color contrast (3.38:1 to 7.0:1)
+- Nav glassmorphism violation (removed `backdrop-blur-sm`)
+- Privacy/Terms pages missing from sitemap
+- All `as any` and `as string` type casts eliminated
+- Playground 413 error handling
+
+**Added:**
+- Security headers (X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy)
+- Zod `.strict()` validation on verify endpoint
+- Per-page OpenGraph metadata on all doc pages
+- Expanded meta descriptions to 80-160 chars on 15 pages
+- Vercel WAF rules (API rate limiting, auth protection, webhook validation)
+- Supabase security migration (pinned search_path, service_role-only policies)
+
+### 2026-03-24
+
+**Added:**
+- Landing page with product positioning, pricing, and FAQ
+- Supabase auth (email/password + GitHub OAuth)
+- Dashboard with API key management, audit log, billing, playground
+- `POST /api/v1/verify` — single document verification
+- `POST /api/v1/verify/batch` — batch verification with webhook delivery
+- `GET /api/v1/batches/:id` — batch status
+- `GET /api/v1/audit` — audit log with cursor-based pagination
+- Stripe metered billing with free tier (100 checks/month)
+- HMAC-SHA256 webhook signing with exponential backoff retries
+- Rate limiting (100 req/min per API key)
+- Documentation site with full API reference
+- SEO: sitemap, robots.txt, JSON-LD, Open Graph
+- Structured JSON logging
+
 ## Contact
 
 - Website: [veriscor.io](https://veriscor.io)
